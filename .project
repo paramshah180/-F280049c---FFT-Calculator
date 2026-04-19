@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
 	<name>adc_DMA_f280049c</name>
@@ -28,3 +29,35 @@
 		</variable>
 	</variableList>
 </projectDescription>
+=======
+<?xml version="1.0" encoding="UTF-8"?>
+<projectDescription>
+	<name>adc_DMA_f280049c</name>
+	<comment></comment>
+	<projects>
+	</projects>
+	<buildSpec>
+		<buildCommand>
+			<name>org.eclipse.cdt.managedbuilder.core.genmakebuilder</name>
+			<arguments>
+			</arguments>
+		</buildCommand>
+	</buildSpec>
+	<natures>
+		<nature>com.ti.ccstudio.core.ccsNature</nature>
+		<nature>org.eclipse.cdt.core.cnature</nature>
+		<nature>org.eclipse.cdt.managedbuilder.core.managedBuildNature</nature>
+		<nature>org.eclipse.cdt.core.ccnature</nature>
+	</natures>
+	<variableList>
+		<variable>
+			<name>C2000WARE_COMMON_INCLUDE</name>
+			<value>$%7BCOM_TI_C2000WARE_INSTALL_DIR%7D/device_support/f28004x/common/include</value>
+		</variable>
+		<variable>
+			<name>C2000WARE_HEADERS_INCLUDE</name>
+			<value>$%7BCOM_TI_C2000WARE_INSTALL_DIR%7D/device_support/f28004x/headers/include</value>
+		</variable>
+	</variableList>
+</projectDescription>
+>>>>>>> a3da9805fff908b83f29aa36a078ddab47b403c2
