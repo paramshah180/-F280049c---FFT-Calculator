@@ -1,0 +1,14 @@
+# Ignore the build folders (where .obj and .out files live)
+/Debug/
+/Release/
+
+# Ignore specific binary/temp files
+*.obj
+*.out
+*.map
+*.txt
+*.launches
+
+# Ignore the indexer and local settings
+.settings/
+.launches/
