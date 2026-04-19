@@ -256,6 +256,10 @@ void initEPWM(void)
     EALLOW;
 
 // Time-Base Setup
+
+//EPwm1Regs.TBPRD = 50;
+//EPwm1Regs.TBCTL.bit.CTRMODE = 1; // Up Down Mode
+
 EPwm1Regs.TBPRD = 99;                       // Set period for 1000 kHz in Up mode
 EPwm1Regs.TBCTL.bit.CTRMODE = 0; // Up Mode
 EPwm1Regs.TBCTL.bit.HSPCLKDIV = 0; // Ensure 100MHz clock to PWM
