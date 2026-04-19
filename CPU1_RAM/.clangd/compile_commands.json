@@ -1,0 +1,57 @@
+[
+   {
+      "directory" : "C:/Users/param/workspace_ccstheia/adc_DMA_f280049c/CPU1_RAM",
+      "command"   : "clang++ -I\"C:/Users/param/workspace_ccstheia/adc_DMA_f280049c\" -I\"C:/TI/C2000Ware_26_00_00_00/device_support/f28004x/common/include/\" -I\"C:/TI/C2000Ware_26_00_00_00/device_support/f28004x/headers/include/\" -I\"C:/Users/param/Documents/ccs/tools/compiler/ti-cgt-c2000_22.6.2.LTS/include\" -I\"C:/TI/C2000Ware_26_00_00_00/libraries/dsp/FPU/c28/include\" -DCPU1 -xc",
+      "file"      : "C:/Users/param/workspace_ccstheia/adc_DMA_f280049c/f28004x_adc.c"
+   },
+   {
+      "directory" : "C:/Users/param/workspace_ccstheia/adc_DMA_f280049c/CPU1_RAM",
+      "command"   : "clang++ -I\"C:/Users/param/workspace_ccstheia/adc_DMA_f280049c\" -I\"C:/TI/C2000Ware_26_00_00_00/device_support/f28004x/common/include/\" -I\"C:/TI/C2000Ware_26_00_00_00/device_support/f28004x/headers/include/\" -I\"C:/Users/param/Documents/ccs/tools/compiler/ti-cgt-c2000_22.6.2.LTS/include\" -I\"C:/TI/C2000Ware_26_00_00_00/libraries/dsp/FPU/c28/include\" -DCPU1",
+      "file"      : "C:/Users/param/workspace_ccstheia/adc_DMA_f280049c/f28004x_codestartbranch.asm"
+   },
+   {
+      "directory" : "C:/Users/param/workspace_ccstheia/adc_DMA_f280049c/CPU1_RAM",
+      "command"   : "clang++ -I\"C:/Users/param/workspace_ccstheia/adc_DMA_f280049c\" -I\"C:/TI/C2000Ware_26_00_00_00/device_support/f28004x/common/include/\" -I\"C:/TI/C2000Ware_26_00_00_00/device_support/f28004x/headers/include/\" -I\"C:/Users/param/Documents/ccs/tools/compiler/ti-cgt-c2000_22.6.2.LTS/include\" -I\"C:/TI/C2000Ware_26_00_00_00/libraries/dsp/FPU/c28/include\" -DCPU1 -xc",
+      "file"      : "C:/Users/param/workspace_ccstheia/adc_DMA_f280049c/f28004x_defaultisr.c"
+   },
+   {
+      "directory" : "C:/Users/param/workspace_ccstheia/adc_DMA_f280049c/CPU1_RAM",
+      "command"   : "clang++ -I\"C:/Users/param/workspace_ccstheia/adc_DMA_f280049c\" -I\"C:/TI/C2000Ware_26_00_00_00/device_support/f28004x/common/include/\" -I\"C:/TI/C2000Ware_26_00_00_00/device_support/f28004x/headers/include/\" -I\"C:/Users/param/Documents/ccs/tools/compiler/ti-cgt-c2000_22.6.2.LTS/include\" -I\"C:/TI/C2000Ware_26_00_00_00/libraries/dsp/FPU/c28/include\" -DCPU1 -xc",
+      "file"      : "C:/Users/param/workspace_ccstheia/adc_DMA_f280049c/f28004x_globalvariabledefs.c"
+   },
+   {
+      "directory" : "C:/Users/param/workspace_ccstheia/adc_DMA_f280049c/CPU1_RAM",
+      "command"   : "clang++ -I\"C:/Users/param/workspace_ccstheia/adc_DMA_f280049c\" -I\"C:/TI/C2000Ware_26_00_00_00/device_support/f28004x/common/include/\" -I\"C:/TI/C2000Ware_26_00_00_00/device_support/f28004x/headers/include/\" -I\"C:/Users/param/Documents/ccs/tools/compiler/ti-cgt-c2000_22.6.2.LTS/include\" -I\"C:/TI/C2000Ware_26_00_00_00/libraries/dsp/FPU/c28/include\" -DCPU1 -xc",
+      "file"      : "C:/Users/param/workspace_ccstheia/adc_DMA_f280049c/f28004x_gpio.c"
+   },
+   {
+      "directory" : "C:/Users/param/workspace_ccstheia/adc_DMA_f280049c/CPU1_RAM",
+      "command"   : "clang++ -I\"C:/Users/param/workspace_ccstheia/adc_DMA_f280049c\" -I\"C:/TI/C2000Ware_26_00_00_00/device_support/f28004x/common/include/\" -I\"C:/TI/C2000Ware_26_00_00_00/device_support/f28004x/headers/include/\" -I\"C:/Users/param/Documents/ccs/tools/compiler/ti-cgt-c2000_22.6.2.LTS/include\" -I\"C:/TI/C2000Ware_26_00_00_00/libraries/dsp/FPU/c28/include\" -DCPU1 -xc",
+      "file"      : "C:/Users/param/workspace_ccstheia/adc_DMA_f280049c/f28004x_piectrl.c"
+   },
+   {
+      "directory" : "C:/Users/param/workspace_ccstheia/adc_DMA_f280049c/CPU1_RAM",
+      "command"   : "clang++ -I\"C:/Users/param/workspace_ccstheia/adc_DMA_f280049c\" -I\"C:/TI/C2000Ware_26_00_00_00/device_support/f28004x/common/include/\" -I\"C:/TI/C2000Ware_26_00_00_00/device_support/f28004x/headers/include/\" -I\"C:/Users/param/Documents/ccs/tools/compiler/ti-cgt-c2000_22.6.2.LTS/include\" -I\"C:/TI/C2000Ware_26_00_00_00/libraries/dsp/FPU/c28/include\" -DCPU1 -xc",
+      "file"      : "C:/Users/param/workspace_ccstheia/adc_DMA_f280049c/f28004x_pievect.c"
+   },
+   {
+      "directory" : "C:/Users/param/workspace_ccstheia/adc_DMA_f280049c/CPU1_RAM",
+      "command"   : "clang++ -I\"C:/Users/param/workspace_ccstheia/adc_DMA_f280049c\" -I\"C:/TI/C2000Ware_26_00_00_00/device_support/f28004x/common/include/\" -I\"C:/TI/C2000Ware_26_00_00_00/device_support/f28004x/headers/include/\" -I\"C:/Users/param/Documents/ccs/tools/compiler/ti-cgt-c2000_22.6.2.LTS/include\" -I\"C:/TI/C2000Ware_26_00_00_00/libraries/dsp/FPU/c28/include\" -DCPU1 -xc",
+      "file"      : "C:/Users/param/workspace_ccstheia/adc_DMA_f280049c/f28004x_sysctrl.c"
+   },
+   {
+      "directory" : "C:/Users/param/workspace_ccstheia/adc_DMA_f280049c/CPU1_RAM",
+      "command"   : "clang++ -I\"C:/Users/param/workspace_ccstheia/adc_DMA_f280049c\" -I\"C:/TI/C2000Ware_26_00_00_00/device_support/f28004x/common/include/\" -I\"C:/TI/C2000Ware_26_00_00_00/device_support/f28004x/headers/include/\" -I\"C:/Users/param/Documents/ccs/tools/compiler/ti-cgt-c2000_22.6.2.LTS/include\" -I\"C:/TI/C2000Ware_26_00_00_00/libraries/dsp/FPU/c28/include\" -DCPU1",
+      "file"      : "C:/Users/param/workspace_ccstheia/adc_DMA_f280049c/f28004x_usdelay.asm"
+   },
+   {
+      "directory" : "C:/Users/param/workspace_ccstheia/adc_DMA_f280049c/CPU1_RAM",
+      "command"   : "clang++ -I\"C:/Users/param/workspace_ccstheia/adc_DMA_f280049c\" -I\"C:/TI/C2000Ware_26_00_00_00/device_support/f28004x/common/include/\" -I\"C:/TI/C2000Ware_26_00_00_00/device_support/f28004x/headers/include/\" -I\"C:/Users/param/Documents/ccs/tools/compiler/ti-cgt-c2000_22.6.2.LTS/include\" -I\"C:/TI/C2000Ware_26_00_00_00/libraries/dsp/FPU/c28/include\" -DCPU1 -xc",
+      "file"      : "C:/Users/param/workspace_ccstheia/adc_DMA_f280049c/f28004x_adc_ex1_soc_epwm.c"
+   },
+   {
+      "directory" : "C:/Users/param/workspace_ccstheia/adc_DMA_f280049c/CPU1_RAM",
+      "command"   : "clang++ -I\"C:/Users/param/workspace_ccstheia/adc_DMA_f280049c\" -I\"C:/TI/C2000Ware_26_00_00_00/device_support/f28004x/common/include/\" -I\"C:/TI/C2000Ware_26_00_00_00/device_support/f28004x/headers/include/\" -I\"C:/Users/param/Documents/ccs/tools/compiler/ti-cgt-c2000_22.6.2.LTS/include\" -I\"C:/TI/C2000Ware_26_00_00_00/libraries/dsp/FPU/c28/include\" -DCPU1 -xc",
+      "file"      : "C:/Users/param/workspace_ccstheia/adc_DMA_f280049c/f28004x_fft.c"
+   }
+]
