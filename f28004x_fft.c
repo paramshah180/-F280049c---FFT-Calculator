@@ -56,7 +56,7 @@ void runFFT(float* pData)
     // Reset pointers
     hnd_rfft->InBuf  = pData;        // Pointer to ADC data (float)
     hnd_rfft->OutBuf = test_output;  // Pointer to FFT result buffer
-    hnd_rfft->MagBuf = pData;        // writes magnitudes over pData 
+    hnd_rfft->MagBuf = pData;        // writes magnitudes over pData (ADC Data) 
 
     // 2. Execute Real FFT
     // This takes N real points and produces N/2 + 1 complex points 
@@ -69,7 +69,7 @@ void runFFT(float* pData)
     
 
 
-    // 4. Peak Find (Search indices 1 to FFT_SIZE/2)
+    // 4. Peak Find (Only from 0 to FFT_Size/2 because cant sense frequency over Nyquist)
     // Index 0 is DC, so we start at 1
     for(i = 1; i < (FFT_SIZE / 2); i++)
     {

@@ -159,7 +159,7 @@ void main(void)
 
     while(1)
     {
-        //1. STALL here until the DMA Interrupt changes the flag
+        //1. STALL here until the DMA Interrupt changes the flag, stays here while readyforFFT = 0 proceeds once readyforFFT = 1
         while(readyForFFT == 0); 
 
          //2. STOP THE DMA: Disable the channel so it doesn't overwrite data while CPU works
@@ -323,6 +323,7 @@ void initDMA(void)
 
 }
 
+    // This interrupt occurs every time a transfer is complete. Transfer size is set in initDMA. 
 __interrupt void dmaCh1ISR(void)
 {
     EALLOW;

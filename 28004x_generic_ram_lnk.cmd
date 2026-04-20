@@ -96,7 +96,7 @@ SECTIONS
    .cio             : > RAMLS0,     PAGE = 0 
 #endif
 
-   ramgs0           : > RAMGS0,    PAGE = 1, ALIGN(2048)
+   ramgs0           : > RAMGS0,    PAGE = 1, ALIGN(2048)  //Align should match Total FFT Buffer Variable
    FFT_buffer_2     : > RAMGS1,    PAGE = 1, ALIGN(2048)  /* Map the section to RAMGS1 */  
    FPUfftTables     : > RAMGS2,    PAGE = 1
 }
