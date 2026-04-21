@@ -1,7 +1,7 @@
 #ifndef SETTINGS_H
 #define SETTINGS_H
 #include "math.h"
-#include "fpu32/fpu_rfft.h" // This provides the definition for CFFT_f32_Struct
+#include "fpu32/fpu_rfft.h" // This provides the definition for RFFT_f32_Struct
 
 
 

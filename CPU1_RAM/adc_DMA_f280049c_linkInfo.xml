@@ -2,7 +2,7 @@
 <link_info>
    <banner>TMS320C2000 Linker PC v22.6.2.LTS</banner>
    <copyright>Copyright (c) 1996-2018 Texas Instruments Incorporated</copyright>
-   <link_time>0x69e799c5</link_time>
+   <link_time>0x69e79f2e</link_time>
    <link_errors>0x0</link_errors>
    <output_file>adc_DMA_f280049c.out</output_file>
    <entry_point>
@@ -442,8 +442,8 @@
       <object_component id="oc-190">
          <name>.ebss:_fftBuffer</name>
          <uninitialized>true</uninitialized>
-         <run_address>0xb000</run_address>
-         <size>0x800</size>
+         <run_address>0xaa00</run_address>
+         <size>0x400</size>
          <input_file_ref idref="fl-3"/>
       </object_component>
       <object_component id="oc-195">
@@ -464,14 +464,14 @@
          <name>ramgs0</name>
          <uninitialized>true</uninitialized>
          <run_address>0xc000</run_address>
-         <size>0x800</size>
+         <size>0x400</size>
          <input_file_ref idref="fl-3"/>
       </object_component>
       <object_component id="oc-a9">
          <name>FFT_buffer_2</name>
          <uninitialized>true</uninitialized>
          <run_address>0xe000</run_address>
-         <size>0x800</size>
+         <size>0x400</size>
          <input_file_ref idref="fl-6"/>
       </object_component>
       <object_component id="oc-181">
@@ -2180,8 +2180,8 @@
       </logical_group>
       <logical_group id="lg-22d" display="no" color="cyan">
          <name>.ebss.2</name>
-         <run_address>0xb000</run_address>
-         <size>0x800</size>
+         <run_address>0xaa00</run_address>
+         <size>0x400</size>
          <contents>
             <object_component_ref idref="oc-190"/>
          </contents>
@@ -2220,7 +2220,7 @@
       <logical_group id="lg-e" display="no" color="cyan">
          <name>ramgs0</name>
          <run_address>0xc000</run_address>
-         <size>0x800</size>
+         <size>0x400</size>
          <contents>
             <object_component_ref idref="oc-95"/>
          </contents>
@@ -2228,7 +2228,7 @@
       <logical_group id="lg-f" display="no" color="cyan">
          <name>FFT_buffer_2</name>
          <run_address>0xe000</run_address>
-         <size>0x800</size>
+         <size>0x400</size>
          <contents>
             <object_component_ref idref="oc-a9"/>
          </contents>
@@ -5399,8 +5399,8 @@
          <page_id>0x1</page_id>
          <origin>0xa800</origin>
          <length>0x800</length>
-         <used_space>0x1f3</used_space>
-         <unused_space>0x60d</unused_space>
+         <used_space>0x5f3</used_space>
+         <unused_space>0x20d</unused_space>
          <attributes>RWIX</attributes>
          <usage_details>
             <allocated_space>
@@ -5415,7 +5415,16 @@
             </allocated_space>
             <available_space>
                <start_address>0xa9f3</start_address>
-               <size>0x60d</size>
+               <size>0xd</size>
+            </available_space>
+            <allocated_space>
+               <start_address>0xaa00</start_address>
+               <size>0x400</size>
+               <logical_group_ref idref="lg-22d"/>
+            </allocated_space>
+            <available_space>
+               <start_address>0xae00</start_address>
+               <size>0x200</size>
             </available_space>
          </usage_details>
       </memory_area>
@@ -5424,15 +5433,10 @@
          <page_id>0x1</page_id>
          <origin>0xb000</origin>
          <length>0x800</length>
-         <used_space>0x800</used_space>
-         <unused_space>0x0</unused_space>
+         <used_space>0x0</used_space>
+         <unused_space>0x800</unused_space>
          <attributes>RWIX</attributes>
          <usage_details>
-            <allocated_space>
-               <start_address>0xb000</start_address>
-               <size>0x800</size>
-               <logical_group_ref idref="lg-22d"/>
-            </allocated_space>
          </usage_details>
       </memory_area>
       <memory_area display="yes" color="green">
@@ -5451,18 +5455,18 @@
          <page_id>0x1</page_id>
          <origin>0xc000</origin>
          <length>0x2000</length>
-         <used_space>0x800</used_space>
-         <unused_space>0x1800</unused_space>
+         <used_space>0x400</used_space>
+         <unused_space>0x1c00</unused_space>
          <attributes>RWIX</attributes>
          <usage_details>
             <allocated_space>
                <start_address>0xc000</start_address>
-               <size>0x800</size>
+               <size>0x400</size>
                <logical_group_ref idref="lg-e"/>
             </allocated_space>
             <available_space>
-               <start_address>0xc800</start_address>
-               <size>0x1800</size>
+               <start_address>0xc400</start_address>
+               <size>0x1c00</size>
             </available_space>
          </usage_details>
       </memory_area>
@@ -5471,18 +5475,18 @@
          <page_id>0x1</page_id>
          <origin>0xe000</origin>
          <length>0x2000</length>
-         <used_space>0x800</used_space>
-         <unused_space>0x1800</unused_space>
+         <used_space>0x400</used_space>
+         <unused_space>0x1c00</unused_space>
          <attributes>RWIX</attributes>
          <usage_details>
             <allocated_space>
                <start_address>0xe000</start_address>
-               <size>0x800</size>
+               <size>0x400</size>
                <logical_group_ref idref="lg-f"/>
             </allocated_space>
             <available_space>
-               <start_address>0xe800</start_address>
-               <size>0x1800</size>
+               <start_address>0xe400</start_address>
+               <size>0x1c00</size>
             </available_space>
          </usage_details>
       </memory_area>
@@ -6186,7 +6190,7 @@
       </symbol>
       <symbol id="sm-169">
          <name>_fftBuffer</name>
-         <value>0xb000</value>
+         <value>0xaa00</value>
          <object_component_ref idref="oc-190"/>
       </symbol>
       <symbol id="sm-16a">
