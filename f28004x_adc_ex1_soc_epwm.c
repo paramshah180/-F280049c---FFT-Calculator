@@ -163,10 +163,10 @@ void main(void)
         while(readyForFFT == 0); 
 
          //2. STOP THE DMA: Disable the channel so it doesn't overwrite data while CPU works
-        EALLOW;
-        DmaRegs.CH1.CONTROL.bit.RUN = 0; 
-        DmaRegs.CH1.CONTROL.bit.HALT = 1; 
-        EDIS;
+        //EALLOW;
+        //DmaRegs.CH1.CONTROL.bit.RUN = 0; 
+        //DmaRegs.CH1.CONTROL.bit.HALT = 1; 
+        //EDIS;
 
         // 3. Capture which half is ready into a local variable
         uint16_t currentBank = pingPongFlag;
@@ -198,11 +198,11 @@ void main(void)
             
 
              // 7. RESTART THE DMA: Now that CPU is done, let it fill the next buffer
-            EALLOW;
-            DmaRegs.CH1.CONTROL.bit.PERINTCLR = 1; // Clear any pending sync triggers
-            DmaRegs.CH1.CONTROL.bit.ERRCLR = 1;    // Clear any sync error flags
-            DmaRegs.CH1.CONTROL.bit.RUN = 1;       // Re-enable
-            EDIS;
+            //EALLOW;
+            //DmaRegs.CH1.CONTROL.bit.PERINTCLR = 1; // Clear any pending sync triggers
+            //DmaRegs.CH1.CONTROL.bit.ERRCLR = 1;    // Clear any sync error flags
+            //DmaRegs.CH1.CONTROL.bit.RUN = 1;       // Re-enable
+            //EDIS;
     }
 
 }
@@ -302,7 +302,7 @@ void initDMA(void)
     DmaRegs.CH1.DST_ADDR_SHADOW = (uint32_t)&adcAResults[0];  //Destination address pointer to adcAResults that starts at index 0 and increases
 
     // 6. Wrap around and Continuous
-    DmaRegs.CH1.MODE.bit.CONTINUOUS = 0;   // Keep going after buffer is full
+    DmaRegs.CH1.MODE.bit.CONTINUOUS = 1;   // Keep going after buffer is full
     DmaRegs.CH1.MODE.bit.CHINTE = 1;       // Enable CPU interrupt at end of transfer
     DmaRegs.CH1.MODE.bit.CHINTMODE = 1;    // Generate CPU interrupt at end of transfer
 
