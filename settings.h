@@ -6,7 +6,7 @@
 
 
 // Sampling & FFT Parameters
-#define FFT_SIZE           1024
+#define FFT_SIZE           64
 #define TOTAL_BUFFER_SIZE  (FFT_SIZE * 2)
 #define FFT_STAGES      (int)log2(FFT_SIZE)
 
