@@ -15,7 +15,6 @@
 //*****************************************************************************
 #define SAMPLING_FREQ   (1000000.0f)       // 1000 kHz
 #define half            (FFT_SIZE/2)
-#define Signal_Freq     (200e3f)           //200 kHz
 //*****************************************************************************
 // the globals
 //*****************************************************************************
@@ -79,7 +78,7 @@ void runFFT(float* pData)
     RFFT_f32_mag_TMU0(hnd_rfft);
     
 
-    
+    /*
     // 5. Peak Find (Only from 0 to FFT_Size/2 because cant sense frequency over Nyquist)
     // Index 0 is DC, so we start at 1
     for(i = 1; i < (FFT_SIZE / 2); i++)
@@ -90,12 +89,14 @@ void runFFT(float* pData)
             max_idx = i;
         }
     }
-
+    */
+    
     //peak_freq_results = (float)max_idx * bin_width;
     amplitude = (2 * pData[max_idx] / FFT_SIZE) * ((3.3 * 3/2)/4095) + .025;  // Calculate the Amplitude of the signal, had to calibrate
     
     signal_bin = roundf(roundf(Signal_Freq / bin_width)/2);
-    phase_final = phase[max_idx];
+    phase_final = phase[signal_bin];
+    peak_freq_results = signal_bin * bin_width;
 
     }
 

@@ -9,6 +9,7 @@
 #define FFT_SIZE           64
 #define TOTAL_BUFFER_SIZE  (FFT_SIZE * 2)
 #define FFT_STAGES      (int)log2(FFT_SIZE)
+#define Signal_Freq     (125)           //125 Hz
 
 // Global External Variables
 extern uint16_t adcAResults[TOTAL_BUFFER_SIZE];

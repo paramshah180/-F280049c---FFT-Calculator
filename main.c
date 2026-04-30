@@ -251,25 +251,37 @@ void initADC(void)
 //
 // initEPWM - Function to configure ePWM1 to generate the SOC.
 //
-void initEPWM(void)
-{
+void initEPWM(void) {
     EALLOW;
 
-// Time-Base Setup
+    // --- ePWM1 Setup (1 MHz Sampler) ---
+    EPwm1Regs.TBPRD = 99; 
+    EPwm1Regs.TBCTL.bit.CTRMODE = 0; 
+    EPwm1Regs.TBCTL.bit.HSPCLKDIV = 0; 
+    EPwm1Regs.TBCTL.bit.CLKDIV = 0; 
 
-//EPwm1Regs.TBPRD = 50;
-//EPwm1Regs.TBCTL.bit.CTRMODE = 1; // Up Down Mode
+    // Enable Sync Loading for ePWM1
+    EPwm1Regs.TBCTL.bit.PHSEN = 1;      // Allow ePWM1 to be reset by a sync pulse
+    EPwm1Regs.TBPHS.bit.TBPHS = 0;      // Load '0' into counter on sync pulse
 
-EPwm1Regs.TBPRD = 99;                       // Set period for 1000 kHz in Up mode
-EPwm1Regs.TBCTL.bit.CTRMODE = 0; // Up Mode
-EPwm1Regs.TBCTL.bit.HSPCLKDIV = 0; // Ensure 100MHz clock to PWM
-EPwm1Regs.TBCTL.bit.CLKDIV = 0;
+    // Event-Trigger Setup
+    EPwm1Regs.ETSEL.bit.SOCAEN = 1; 
+    EPwm1Regs.ETSEL.bit.SOCASEL = 1; 
+    EPwm1Regs.ETPS.bit.SOCAPRD = 1; 
 
-// Event-Trigger Setup
-EPwm1Regs.ETSEL.bit.SOCAEN = 1;             // Enable SOCA
-EPwm1Regs.ETSEL.bit.SOCASEL = 1;          // Trigger ADC when counter is 0
-EPwm1Regs.ETPS.bit.SOCAPRD = 1;            // Trigger on every event
-
+    // --- ePWM3 Setup (125 Hz Master Reference) ---
+    EPwm3Regs.TBCTL.bit.CTRMODE = 0; 
+    EPwm3Regs.TBCTL.bit.HSPCLKDIV = 5;  // /10
+    EPwm3Regs.TBCTL.bit.CLKDIV = 6;     // /64
+    EPwm3Regs.TBPRD = 1249;            // 100MHz / (10*64*1250) = 125Hz
+    
+    // Configure ePWM3 to send the pulse out
+    EPwm3Regs.TBCTL.bit.SYNCOSEL = 1;   // Pulse out when CTR = 0
+    
+    // --- Global Sync Routing (Crucial Step) ---
+    // By default, EPWM1 is the master. We must change EPWM1's input 
+    // to come from EPWM3 instead of the external sync pin.
+    SyncSocRegs.SYNCSELECT.bit.EPWM1SYNCIN = 2; // 2 = EPWM3SYNCO selected for EPWM1
 
     EDIS;
 }
@@ -302,7 +314,7 @@ void initDMA(void)
     DmaRegs.CH1.DST_ADDR_SHADOW = (uint32_t)&adcAResults[0];  //Destination address pointer to adcAResults that starts at index 0 and increases
 
     // 6. Wrap around and Continuous
-    DmaRegs.CH1.MODE.bit.CONTINUOUS = 1;   // Keep going after buffer is full
+    DmaRegs.CH1.MODE.bit.CONTINUOUS = 0;   // Keep going after buffer is full
     DmaRegs.CH1.MODE.bit.CHINTE = 1;       // Enable CPU interrupt at end of transfer
     DmaRegs.CH1.MODE.bit.CHINTMODE = 1;    // Generate CPU interrupt at end of transfer
 
@@ -357,7 +369,8 @@ __interrupt void dmaCh1ISR(void)
     
     // 2. RE-ARM THE DMA: Clear the peripheral trigger flag
     // This is the "latch" that prevents the next transfer from starting
-    DmaRegs.CH1.CONTROL.bit.PERINTCLR = 1; 
+    DmaRegs.CH1.CONTROL.bit.PERINTCLR = 1;
+    DmaRegs.CH1.CONTROL.bit.RUN = 1; 
 
     
 
