@@ -14,6 +14,7 @@
 uint16_t adcAResults[TOTAL_BUFFER_SIZE];     // Buffer for results
 uint16_t index;                              // Index into result buffer
 volatile uint16_t bufferFull;                // Flag to indicate buffer is full
+uint16_t i;
 
 // Define handle and memory
 RFFT_F32_STRUCT rfft;
@@ -39,7 +40,10 @@ extern void runFFT(float* pData);
 volatile uint16_t pingPongFlag = 0; // 0 = First half full, 1 = Second half full
 volatile uint16_t readyForFFT = 0;
 float fftBuffer[FFT_SIZE];
+float cosTable[FFT_SIZE];
+float sinTable[FFT_SIZE];
 uint16_t *currentFFTBufferPtr;
+float step;
 
 
 
@@ -155,6 +159,14 @@ void main(void)
     EALLOW;
     DmaRegs.CH1.CONTROL.bit.RUN = 1; 
     EDIS;
+
+    // create sin and cos lookup tables based on Sampling Frequency and Signal Frequency 
+    step = (2.0f * PI * Signal_Freq) / SAMPLING_FREQ;
+    for (i =  0; i < FFT_SIZE; i++)
+    {
+        cosTable[i] = cosf(step * i);
+        sinTable[i] = sinf(step * i);
+    }
    
 
     while(1)
@@ -186,7 +198,7 @@ void main(void)
         for(index = 0; index < FFT_SIZE; index++) {
             //rawSource[index] = rawSource[index];
             fftBuffer[index] = rawSource[index];
-            fftBuffer[index] = fftBuffer[index]  - (4095 * 1.5/3.3);
+            fftBuffer[index] = fftBuffer[index]  - (4095 * 1.25/3.3);
 
             //printf("Value: %f\n", fftBuffer[index]);
         }
@@ -255,7 +267,7 @@ void initEPWM(void) {
     EALLOW;
 
     // --- ePWM1 Setup (1 MHz Sampler) ---
-    EPwm1Regs.TBPRD = 99; 
+    EPwm1Regs.TBPRD = 999; 
     EPwm1Regs.TBCTL.bit.CTRMODE = 0; 
     EPwm1Regs.TBCTL.bit.HSPCLKDIV = 0; 
     EPwm1Regs.TBCTL.bit.CLKDIV = 0; 
@@ -269,11 +281,12 @@ void initEPWM(void) {
     EPwm1Regs.ETSEL.bit.SOCASEL = 1; 
     EPwm1Regs.ETPS.bit.SOCAPRD = 1; 
 
+    /*
     // --- ePWM3 Setup (125 Hz Master Reference) ---
     EPwm3Regs.TBCTL.bit.CTRMODE = 0; 
     EPwm3Regs.TBCTL.bit.HSPCLKDIV = 5;  // /10
-    EPwm3Regs.TBCTL.bit.CLKDIV = 6;     // /64
-    EPwm3Regs.TBPRD = 1249;            // 100MHz / (10*64*1250) = 125Hz
+    EPwm3Regs.TBCTL.bit.CLKDIV = 5;     // /32
+    EPwm3Regs.TBPRD = 24;            // 100MHz / (10*32*25) = 125Hz
     
     // Configure ePWM3 to send the pulse out
     EPwm3Regs.TBCTL.bit.SYNCOSEL = 1;   // Pulse out when CTR = 0
@@ -282,6 +295,7 @@ void initEPWM(void) {
     // By default, EPWM1 is the master. We must change EPWM1's input 
     // to come from EPWM3 instead of the external sync pin.
     SyncSocRegs.SYNCSELECT.bit.EPWM1SYNCIN = 2; // 2 = EPWM3SYNCO selected for EPWM1
+    */
 
     EDIS;
 }
@@ -314,7 +328,7 @@ void initDMA(void)
     DmaRegs.CH1.DST_ADDR_SHADOW = (uint32_t)&adcAResults[0];  //Destination address pointer to adcAResults that starts at index 0 and increases
 
     // 6. Wrap around and Continuous
-    DmaRegs.CH1.MODE.bit.CONTINUOUS = 0;   // Keep going after buffer is full
+    DmaRegs.CH1.MODE.bit.CONTINUOUS = 1;   // Keep going after buffer is full
     DmaRegs.CH1.MODE.bit.CHINTE = 1;       // Enable CPU interrupt at end of transfer
     DmaRegs.CH1.MODE.bit.CHINTMODE = 1;    // Generate CPU interrupt at end of transfer
 

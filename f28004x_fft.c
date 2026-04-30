@@ -13,8 +13,7 @@
 //*****************************************************************************
 // the definess
 //*****************************************************************************
-#define SAMPLING_FREQ   (1000000.0f)       // 1000 kHz
-#define half            (FFT_SIZE/2)
+
 //*****************************************************************************
 // the globals
 //*****************************************************************************
@@ -22,7 +21,10 @@
 float bin_width = SAMPLING_FREQ / (FFT_SIZE);
 float peak_freq_results;
 extern float RFFT_f32_twiddleFactors[];
-int signal_bin; 
+int signal_bin;
+int n;
+float I;
+float Q; 
 
 
 
@@ -36,9 +38,8 @@ int signal_bin;
 #pragma DATA_ALIGN(test_output, FFT_SIZE * 2); 
 float test_output[FFT_SIZE];
 
-float amplitude;
+
 float phase_final;
-float phase[FFT_SIZE/2];
 
 // Define handle and memory
 //CFFT_F32_STRUCT cfft;
@@ -54,11 +55,11 @@ float phase[FFT_SIZE/2];
 void runFFT(float* pData)
 {
     
-    float max_mag = 0.0f;
-    uint16_t max_idx = 0;
-    int i;
+    //float max_mag = 0.0f;
+    //uint16_t max_idx = 0;
+    //int i;
     
-
+    /*
     // Reset pointers
     hnd_rfft->InBuf  = pData;        // Pointer to ADC data (float)
     hnd_rfft->OutBuf = test_output;  // Pointer to FFT result buffer
@@ -78,7 +79,7 @@ void runFFT(float* pData)
     RFFT_f32_mag_TMU0(hnd_rfft);
     
 
-    /*
+    
     // 5. Peak Find (Only from 0 to FFT_Size/2 because cant sense frequency over Nyquist)
     // Index 0 is DC, so we start at 1
     for(i = 1; i < (FFT_SIZE / 2); i++)
@@ -89,14 +90,26 @@ void runFFT(float* pData)
             max_idx = i;
         }
     }
-    */
+    
     
     //peak_freq_results = (float)max_idx * bin_width;
-    amplitude = (2 * pData[max_idx] / FFT_SIZE) * ((3.3 * 3/2)/4095) + .025;  // Calculate the Amplitude of the signal, had to calibrate
+    //amplitude = (2 * pData[max_idx] / FFT_SIZE) * ((3.3 * 3/2)/4095) + .025;  // Calculate the Amplitude of the signal, had to calibrate
     
     signal_bin = roundf(roundf(Signal_Freq / bin_width)/2);
     phase_final = phase[signal_bin];
     peak_freq_results = signal_bin * bin_width;
+    */
+    I = 0;
+    Q = 0;
+
+    for (n = 0; n < FFT_SIZE; n++)
+    {
+        I += pData[n] * cosTable[n];
+        Q += pData[n] * sinTable[n];
+    }
+    
+    phase_final = atan2f(Q, I);
+    phase_final = phase_final * 180/PI;
 
     }
 
